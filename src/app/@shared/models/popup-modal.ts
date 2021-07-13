@@ -90,7 +90,7 @@ export class PopupModal {
         this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
         break;
       }
-      case 'profession-admin': {
+      case 'add-payment-method': {
         dialogConfig.width = '550px';
         dialogConfig.id = `modal-${type}`;
         dialogConfig.data = modalData;
