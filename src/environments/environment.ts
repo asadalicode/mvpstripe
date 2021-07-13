@@ -13,9 +13,11 @@ import { env } from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
-  serverUrl: '/api',
+  serverUrl: 'http://localhost:4000',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  stripeKey:
+    'pk_test_51HnOIGHFh0EYi2CVRcVJxry6vXxI0q8xte5sVPb3jr3SvksSQ6EZAGzNwMVTEPy3rASh9LlWRVZGAqXxmG5sTLM100z8yoU0Qn',
 };
 
 /*

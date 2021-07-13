@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "stripe"
+  "defaultProject": "stripe",
+  "cli": {
+    "analytics": "41cb4974-2502-47e4-9780-1a6ae751e805"
+  }
 }

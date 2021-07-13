@@ -12,4 +12,6 @@ export const environment = {
   serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  stripeKey:
+    'pk_test_51HnOIGHFh0EYi2CVRcVJxry6vXxI0q8xte5sVPb3jr3SvksSQ6EZAGzNwMVTEPy3rASh9LlWRVZGAqXxmG5sTLM100z8yoU0Qn',
 };

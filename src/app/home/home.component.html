@@ -1,25 +1,26 @@
 <div class="container">
   <mat-card class="p-3 mt-5">
-    <form>
+    <div *ngIf="isLoading" class="col-md-12 pt-5 justify-content-center d-flex">
+      <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
+    </div>
+    <form *ngIf="!isLoading" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
       <div fxLayout="row" fxLayoutGap="10%">
         <div fxLayout="column" fxLayoutGap="15px">
           <mat-form-field appearance="outline">
-            <mat-label>Input</mat-label>
-            <input matInput />
+            <mat-label>This months bill</mat-label>
+            <input readonly="true" matInput formControlName="month_bill" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Next Payment Date</mat-label>
 
-            <input matInput [matDatepicker]="picker" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput readonly="true" formControlName="next_payment_date" />
           </mat-form-field>
         </div>
         <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="end flex-end">
           <div>
             <mat-form-field appearance="outline">
-              <mat-label>Input</mat-label>
-              <input matInput />
+              <mat-label>Payment Info</mat-label>
+              <input matInput readonly="true" formControlName="payment_info" />
             </mat-form-field>
           </div>
           <div>
@@ -27,7 +28,7 @@
               <div fxLayout="row" fxLayoutAlign="center center">
                 <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
                 <mat-form-field appearance="outline" class="pl-2">
-                  <input matInput />
+                  <input matInput readonly="true" formControlName="card_number" />
                 </mat-form-field>
               </div>
               <button mat-raised-button color="primary" routerLink="/payment-method">EDIT</button>
@@ -37,7 +38,7 @@
         <div fxLayout="column" fxLayoutGap="5px">
           <div>
             <mat-form-field appearance="outline">
-              <mat-label>Input</mat-label>
+              <mat-label>License Utilisation</mat-label>
               <button
                 mat-icon-button
                 matSuffix
@@ -45,14 +46,14 @@
               >
                 <mat-icon>info</mat-icon>
               </button>
-              <input matInput />
+              <input readonly="true" formControlName="license_utilisation" matInput />
             </mat-form-field>
           </div>
           <div fxLayout="column" fxLayoutAlign="start">
             <div class="pb-4">
-              <p>x active licenses</p>
-              <p>x pending Invitations</p>
-              <p>x licenses available to assign</p>
+              <p>{{ data?.customerSubscriptionData?.data?.length }} active licenses</p>
+              <p>2 pending Invitations</p>
+              <p>3 licenses available to assign</p>
             </div>
             <div fxLayout="row" fxLayoutGap="5px">
               <button mat-raised-button color="primary">EDIT LICENSES</button>

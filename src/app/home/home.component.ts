@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '@app/@shared/services/data.service';
+import * as moment from 'moment';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,22 +12,59 @@ import { QuoteService } from './quote.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  quote: string | undefined;
+  Form!: FormGroup;
   isLoading = false;
-
-  constructor(private quoteService: QuoteService) {}
+  data: any = {
+    customerSubscriptionData: {},
+    customerDetail: {},
+    customerPaymentMethod: {},
+  };
+  constructor(private quoteService: QuoteService, private dataService: DataService, private formBuilder: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
-    this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
+    this.getCustomer_Subscription();
   }
+
+  private createForm() {
+    this.Form = this.formBuilder.group({
+      month_bill: [''],
+      payment_info: [''],
+      license_utilisation: [''],
+      next_payment_date: [''],
+      card_number: [''],
+    });
+  }
+
+  getCustomer_Subscription() {
+    this.isLoading = true;
+    this.dataService.getCustomer_Subscription('cus_Jq7hwNmp0s0yaP').subscribe(
+      (res: any) => {
+        this.data.customerSubscriptionData = res[0];
+        this.data.customerDetail = res[1];
+        this.data.customerPaymentMethod = res[2];
+        this.populateFormValues();
+        this.isLoading = false;
+        console.log(this.data);
+      },
+      (error: any) => {
+        this.isLoading = false;
+      }
+    );
+  }
+
+  populateFormValues() {
+    this.Form.patchValue({
+      month_bill: this.data.customerSubscriptionData.data[0].plan.amount / 100,
+      payment_info: this.data.customerPaymentMethod.data[0].type,
+      license_utilisation: [''],
+      next_payment_date: moment
+        .unix(this.data.customerSubscriptionData.data[0].current_period_end)
+        .format('MM/DD/YYYY'),
+      card_number: `********${this.data.customerPaymentMethod.data[0].card.last4}`,
+    });
+  }
+
+  submit() {}
 }

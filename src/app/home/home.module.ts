@@ -9,7 +9,9 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
-
+import { NgxStripeModule } from 'ngx-stripe';
+import { environment } from '@env/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +21,9 @@ import { PaymentMethodComponent } from './components/payment-method/payment-meth
     MaterialModule,
     Angulartics2Module,
     HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxStripeModule.forRoot(environment.stripeKey),
   ],
   declarations: [HomeComponent, PaymentMethodComponent],
 })
