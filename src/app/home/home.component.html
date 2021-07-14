@@ -72,7 +72,9 @@
       <div fxLayout="row" fxLayoutAlign="space-around center" class="pt-5">
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
           <p>Invoicing</p>
-          <button mat-raised-button color="primary" routerLink="/invoices">VIEW</button>
+          <button mat-raised-button color="primary" [routerLink]="['/invoices/', data?.customerDetail?.id]">
+            VIEW
+          </button>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
           <p>Need some help?</p>

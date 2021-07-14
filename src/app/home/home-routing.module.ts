@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent, data: { title: marker('Home') } },
     { path: 'payment-method', component: PaymentMethodComponent },
-    { path: 'invoices', component: InvoicesComponent },
+    { path: 'invoices/:customerId', component: InvoicesComponent },
     { path: 'cancel-account', component: CancelAccountComponent },
     { path: 'too-expensive', component: TooExpensiveComponent },
     { path: 'cancellation', component: CancellationComponent },

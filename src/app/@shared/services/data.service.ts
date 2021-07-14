@@ -14,15 +14,14 @@ export class DataService {
     this.dialogSubject.next('');
   }
 
-  getCustomerSubscription(id: any): Observable<any> {
-    const url = `/getCustomerSubscription?id=${id}`;
-    return this.http.get(url);
-  }
-
   getCustomer_Subscription(id: any): Observable<any> {
     let customerSubscription = this.http.get(`/getCustomerSubscription?id=${id}`);
     let customer = this.http.get(`/getCustomer?id=${id}`);
     let customerPaymentMethod = this.http.get(`/getPaymentMethods?id=${id}`);
     return forkJoin([customerSubscription, customer, customerPaymentMethod]);
+  }
+
+  getInvoices(id: any): Observable<any> {
+    return this.http.get(`/listInvoices?id=${id}`);
   }
 }
