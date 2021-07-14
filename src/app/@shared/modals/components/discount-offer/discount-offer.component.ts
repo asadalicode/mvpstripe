@@ -3,23 +3,30 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
+import { PopupModal } from '@app/@shared/Models/popup-modal';
+
+import { DeleteComponent } from '@app/@shared/modals/components/delete/delete.component';
 
 @Component({
-  selector: 'app-add-payment-method',
-  templateUrl: './add-payment-method.component.html',
-  styleUrls: ['./add-payment-method.component.scss'],
+  selector: 'app-discount-offer',
+  templateUrl: './discount-offer.component.html',
+  styleUrls: ['./discount-offer.component.scss'],
 })
-export class AddPaymentMethodComponent implements OnInit {
+export class DiscountOfferComponent implements OnInit {
   socities: any = [];
   isSocietyLayout = false;
   delete: boolean = true;
   dataModel: any = {};
   data: any = {};
+  popupRef = new PopupModal(this.matDialog);
+  DeleteComponent = DeleteComponent;
+
   constructor(
     private matDialog: MatDialog,
     private router: Router,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AddPaymentMethodComponent>,
+    public dialogRef: MatDialogRef<DiscountOfferComponent>,
+
     @Inject(MAT_DIALOG_DATA) public dataObject: any
   ) {}
   ngOnInit(): void {
@@ -37,7 +44,10 @@ export class AddPaymentMethodComponent implements OnInit {
     console.log(component);
 
     switch (component) {
-      case 'PaymentMethod':
+      case 'TooExpensive':
+        // this.deleteCategory();
+        break;
+      case 'Cancellation':
         // this.deleteCategory();
         break;
 
@@ -62,4 +72,8 @@ export class AddPaymentMethodComponent implements OnInit {
   // deleteAdmin() {
   //   this.closeModal();
   // }
+  openItemModal(type: string, component: any, data?: {}, fromComponent?: string) {
+    this.matDialog.closeAll();
+    const dialogRef = this.popupRef.openModal(type, component, { data: data }, fromComponent);
+  }
 }

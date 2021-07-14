@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Angulartics2Module } from 'angulartics2';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
@@ -12,12 +13,17 @@ import { PaymentMethodComponent } from './components/payment-method/payment-meth
 import { NgxStripeModule } from 'ngx-stripe';
 import { environment } from '@env/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InvoicesComponent } from './components/invoices/invoices.component';
+import { CancelAccountComponent } from './components/cancel-account/cancel-account.component';
+import { TooExpensiveComponent } from './components/too-expensive/too-expensive.component';
+import { CancellationComponent } from './components/cancellation/cancellation.component';
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
     SharedModule,
     FlexLayoutModule,
+    NgbModule,
     MaterialModule,
     Angulartics2Module,
     HomeRoutingModule,
@@ -25,6 +31,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     NgxStripeModule.forRoot(environment.stripeKey),
   ],
-  declarations: [HomeComponent, PaymentMethodComponent],
+  declarations: [
+    HomeComponent,
+    PaymentMethodComponent,
+    InvoicesComponent,
+    CancelAccountComponent,
+    TooExpensiveComponent,
+    CancellationComponent,
+  ],
 })
 export class HomeModule {}

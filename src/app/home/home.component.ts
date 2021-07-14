@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  isShowAlert = false;
+
   Form!: FormGroup;
   isLoading = false;
   data: any = {
@@ -19,11 +22,22 @@ export class HomeComponent implements OnInit {
     customerDetail: {},
     customerPaymentMethod: {},
   };
-  constructor(private quoteService: QuoteService, private dataService: DataService, private formBuilder: FormBuilder) {
+
+  constructor(
+    private quoteService: QuoteService,
+    private dataService: DataService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.dataService.dialogSubject.subscribe((res: any) => {
+      if (res == 'done') {
+        this.showAlert();
+      }
+    });
     this.getCustomer_Subscription();
   }
 
@@ -65,6 +79,8 @@ export class HomeComponent implements OnInit {
       card_number: `********${this.data.customerPaymentMethod.data[0].card.last4}`,
     });
   }
-
+  showAlert() {
+    this.isShowAlert = true;
+  }
   submit() {}
 }

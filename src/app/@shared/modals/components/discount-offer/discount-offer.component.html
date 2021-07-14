@@ -1,0 +1,29 @@
+<div class="modal-content">
+  <div class="modal-header" align="end">
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <div class="modal-body text-center pt-1">
+    <div class="p-3">
+      <h2 class="text-center pb-3">Too expensive #2</h2>
+      <p class="text-center pb-3">HOW DOES 50% OFF YOUR NEXT 2 MONTHS SOUND? WILL THAT HELP?</p>
+      <form>
+        <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
+          <button
+            mat-raised-button
+            color="warn"
+            class="mr-3"
+            type="button"
+            (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')"
+          >
+            PLEASE CANCEL
+          </button>
+          <button mat-raised-button color="primary">SAVE 50%</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

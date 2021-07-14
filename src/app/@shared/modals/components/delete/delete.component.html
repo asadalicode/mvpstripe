@@ -1,1 +1,25 @@
-<p>delete works!</p>
+<div class="modal-content">
+  <!-- <p *ngIf="isShowAlert">
+    <ngb-alert type="warning" [dismissible]="false">
+      <strong>We are sorry</strong> to see you go and are here for you if you would like to return. We will hold your
+      account for a short period of time before deleting your data to comply with GDPR regulations.
+    </ngb-alert>
+  </p> -->
+  <div class="modal-header" align="end">
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <div class="modal-body pb-4 text-center pt-1">
+    <div>
+      <h4 class="pb-3">Are you sure ?</h4>
+
+      <mat-dialog-actions class="d-flex justify-content-center" fxLayoutGap="20px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button (click)="closeModal()" cdkFocusInitial class="clicked" color="warn">Ok</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

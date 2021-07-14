@@ -10,25 +10,8 @@ export class PopupModal {
     dialogConfig.autoFocus = false;
 
     switch (type) {
-      case 'login': {
-        dialogConfig.width = '450px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      case 'signup': {
-        dialogConfig.width = '450px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      case 'item-lock':
-      case 'item-unlock':
       case 'delete':
-      case 'delete-user':
-      case 'revoke': {
+      case 'delete-user': {
         dialogConfig.width = '480px';
         dialogConfig.id = `modal-${type}`;
         (dialogConfig.backdropClass = 'backdropBackground'),
@@ -42,83 +25,18 @@ export class PopupModal {
         this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
         break;
       }
-      // case 'delete': {
-      //   dialogConfig.width = '480px';
-      //   dialogConfig.id = `modal-${type}`;
-      //   dialogConfig.data = modalData;
-      //   dialogConfig.panelClass = 'custom-modalbox';
-      //   this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-      //   break;
-      // }
-      // case 'edit-role': {
-      //   dialogConfig.width = '550px';
-      //   dialogConfig.id = `modal-${type}`;
-      //   dialogConfig.data = modalData;
-      //   dialogConfig.panelClass = 'custom-modalbox';
-      //   this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-      //   break;
-      // }
-      case 'edit-name':
-      case 'edit-role':
-      case 'add-new': {
-        dialogConfig.width = '550px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.backdropClass = 'backdropBackground';
-        dialogConfig.data = {
-          type: type,
-          data: modalData,
-          fromComponent: fromComponent,
-        };
-        dialogConfig.panelClass = 'custom-modalbox';
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      // case 'add-new': {
-      //   dialogConfig.width = '550px';
-      //   dialogConfig.id = `modal-${type}`;
-      //   dialogConfig.data = modalData;
-      //   dialogConfig.panelClass = 'custom-modalbox';
-      //   this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-      //   break;
-      // }
-      case 'change-avatar': {
-        dialogConfig.width = '550px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        dialogConfig.backdropClass = 'backdropBackground';
-        dialogConfig.panelClass = 'custom-modalbox';
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      case 'add-payment-method': {
-        dialogConfig.width = '550px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        dialogConfig.backdropClass = 'backdropBackground';
-        dialogConfig.panelClass = 'custom-modalbox';
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      case 'place-of-employement': {
-        dialogConfig.width = '550px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        dialogConfig.backdropClass = 'backdropBackground';
-        dialogConfig.panelClass = 'custom-modalbox';
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
-      case 'change-password': {
-        dialogConfig.width = '400px';
-        dialogConfig.id = `modal-${type}`;
-        dialogConfig.data = modalData;
-        dialogConfig.backdropClass = 'backdropBackground';
-        dialogConfig.panelClass = 'custom-modalbox';
-        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
-        break;
-      }
 
-      case 'img-cropper': {
+      case 'add-payment-method': {
+        dialogConfig.width = '1000px';
+        dialogConfig.id = `modal-${type}`;
+        dialogConfig.data = modalData;
+        dialogConfig.backdropClass = 'backdropBackground';
+        dialogConfig.panelClass = 'custom-modalbox';
+        this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
+        break;
+      }
+      case 'discount-offer': {
+        dialogConfig.width = '500px';
         dialogConfig.id = `modal-${type}`;
         dialogConfig.data = modalData;
         dialogConfig.backdropClass = 'backdropBackground';

@@ -9,9 +9,9 @@ import { MaterialModule } from './material.module';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { environment } from '@env/environment';
 import { CoreModule } from '@core';
+
 import { SharedModule } from '@shared';
 import { AuthModule } from '@app/auth';
 import { HomeModule } from './home/home.module';

@@ -1,4 +1,10 @@
 <div class="container">
+  <p *ngIf="isShowAlert">
+    <ngb-alert type="danger" [dismissible]="true">
+      <strong>We are sorry</strong> to see you go and are here for you if you would like to return. We will hold your
+      account for a short period of time before deleting your data to comply with GDPR regulations.
+    </ngb-alert>
+  </p>
   <mat-card class="p-3 mt-5">
     <div *ngIf="isLoading" class="col-md-12 pt-5 justify-content-center d-flex">
       <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
@@ -57,7 +63,7 @@
             </div>
             <div fxLayout="row" fxLayoutGap="5px">
               <button mat-raised-button color="primary">EDIT LICENSES</button>
-              <button mat-raised-button color="warn">CANCEL PLAN</button>
+              <button mat-raised-button color="warn" routerLink="/cancel-account">CANCEL PLAN</button>
             </div>
           </div>
         </div>
@@ -66,7 +72,7 @@
       <div fxLayout="row" fxLayoutAlign="space-around center" class="pt-5">
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
           <p>Invoicing</p>
-          <button mat-raised-button color="primary">VIEW</button>
+          <button mat-raised-button color="primary" routerLink="/invoices">VIEW</button>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
           <p>Need some help?</p>
