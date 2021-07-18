@@ -1,5 +1,6 @@
 <div class="modal-content">
-  <div class="modal-header" align="end">
+  <div class="modal-header" align="space-between">
+    <h3 class="pl-3">Add Payment Method</h3>
     <button type="button" (click)="close()" class="close" aria-label="Close">
       <span aria-hidden="true">
         <img src="assets/cancel.png" width="20px" />
@@ -8,63 +9,49 @@
   </div>
   <div class="modal-body text-center pt-1">
     <div class="p-3 mt-0">
-      <form>
-        <div fxLayout="row" fxLayoutGap="5%" class="mt-4">
-          <div fxLayout="column" fxLayoutGap="10px">
-            <h6>Card Details</h6>
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
-              <mat-form-field appearance="outline" class="pl-2">
-                <input matInput />
-              </mat-form-field>
-            </div>
-          </div>
-          <div fxLayout="column" fxLayoutGap="10px">
-            <h6>Expires</h6>
-
-            <mat-form-field appearance="outline">
-              <input matInput />
-            </mat-form-field>
-          </div>
-          <div fxLayout="column" class="justify-content-center">
-            <div fxLayout="row" fxLayoutGap="5px">
-              <button mat-raised-button color="primary">Edit</button>
-              <button mat-raised-button color="primary">Replace</button>
-
-              <button
-                mat-raised-button
-                color="warn"
-                matTooltip="Uh oh, you must add a new payment method before you re move this one."
-              >
-                Delete
-              </button>
-            </div>
+      <form (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+        <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="5%" class="mt-4">
+          <div fxFlex="50%" fxLayout="column" fxLayoutGap="10px">
+            <h6 class="mr-auto">Card Details</h6>
+            <ngx-stripe-card class="black-box p-3" [options]="cardOptions"></ngx-stripe-card>
           </div>
         </div>
 
         <div fxLayout="row" fxLayoutGap="5%" class="mt-5" fxLayoutAlign="space-between end">
           <div fxLayout="row wrap" fxLayoutGap="20px">
             <mat-form-field fxFlex="40%" appearance="outline">
-              <mat-label>Input</mat-label>
-              <input matInput />
+              <mat-label>Billing Address</mat-label>
+              <input matInput formControlName="address_line1" />
+              <mat-error *ngIf="hasError('address_line1', 'required')">
+                <span>Adress1 is required</span>
+              </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex="40%" appearance="outline">
-              <mat-label>Input</mat-label>
-              <input matInput />
+              <mat-label>Billing Address2</mat-label>
+              <input matInput formControlName="address_line2" />
+              <mat-error *ngIf="hasError('address_line2', 'required')">
+                <span>Adress2 is required</span>
+              </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex="40%" appearance="outline">
-              <mat-label>Input</mat-label>
-              <input matInput />
+              <mat-label>Address city</mat-label>
+              <input matInput formControlName="address_city" />
+              <mat-error *ngIf="hasError('address_city', 'required')">
+                <span>city is required</span>
+              </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex="40%" appearance="outline">
-              <mat-label>Input</mat-label>
-              <input matInput />
+              <mat-label>Address country</mat-label>
+              <input matInput formControlName="address_country" />
+              <mat-error *ngIf="hasError('address_country', 'required')">
+                <span>country is required</span>
+              </mat-error>
             </mat-form-field>
           </div>
           <div fxLayout="column">
             <div fxLayout="row">
-              <button mat-raised-button color="warn" class="mr-3">CANCEL</button>
-              <button mat-raised-button color="primary">SAVE</button>
+              <button type="button" (click)="close()" mat-raised-button color="warn" class="mr-3">CANCEL</button>
+              <button type="submit" [disabled]="Form.invalid" mat-raised-button color="primary">SAVE</button>
             </div>
           </div>
         </div>

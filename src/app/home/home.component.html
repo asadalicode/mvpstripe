@@ -37,7 +37,9 @@
                   <input matInput readonly="true" formControlName="card_number" />
                 </mat-form-field>
               </div>
-              <button mat-raised-button color="primary" routerLink="/payment-method">EDIT</button>
+              <button mat-raised-button color="primary" [routerLink]="['/payment-method/', data?.customerDetail?.id]">
+                EDIT
+              </button>
             </div>
           </div>
         </div>
@@ -63,7 +65,7 @@
             </div>
             <div fxLayout="row" fxLayoutGap="5px">
               <button mat-raised-button color="primary">EDIT LICENSES</button>
-              <button mat-raised-button color="warn" routerLink="/cancel-account">CANCEL PLAN</button>
+              <button mat-raised-button color="warn" (click)="routeToCancel()">CANCEL PLAN</button>
             </div>
           </div>
         </div>

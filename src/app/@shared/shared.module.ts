@@ -9,9 +9,20 @@ import { AddPaymentMethodComponent } from './modals/components/add-payment-metho
 import { DeleteComponent } from './modals/components/delete/delete.component';
 
 import { DiscountOfferComponent } from './modals/components/discount-offer/discount-offer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxStripeModule } from 'ngx-stripe';
+import { environment } from '@env/environment';
 
 @NgModule({
-  imports: [FlexLayoutModule, MaterialModule, CommonModule, NgbModule],
+  imports: [
+    FlexLayoutModule,
+    MaterialModule,
+    CommonModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxStripeModule.forRoot(environment.stripeKey),
+  ],
   declarations: [LoaderComponent, AddPaymentMethodComponent, DeleteComponent, DiscountOfferComponent],
   exports: [LoaderComponent],
 })

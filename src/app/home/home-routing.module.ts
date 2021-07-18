@@ -14,7 +14,7 @@ const routes: Routes = [
   Shell.childRoutes([
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent, data: { title: marker('Home') } },
-    { path: 'payment-method', component: PaymentMethodComponent },
+    { path: 'payment-method/:customerId', component: PaymentMethodComponent },
     { path: 'invoices/:customerId', component: InvoicesComponent },
     { path: 'cancel-account', component: CancelAccountComponent },
     { path: 'too-expensive', component: TooExpensiveComponent },

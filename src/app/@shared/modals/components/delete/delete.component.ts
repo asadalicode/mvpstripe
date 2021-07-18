@@ -4,7 +4,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { DataService } from '@app/@shared/services/data.service';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+export class subscriptions {
+  constructor(public id: []) {}
+}
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
@@ -34,6 +39,14 @@ export class DeleteComponent implements OnInit {
     this.dataService.dialogSubject.next('done');
     this.router.navigate(['/']);
   }
+
+  closeAfterDelete() {
+    this.dialogRef.close({ event: 'deleted' });
+  }
+
+  closeAfterUpdate() {
+    this.dialogRef.close({ event: 'updated' });
+  }
   close() {
     this.dialogRef.close({ event: 'close' });
   }
@@ -42,37 +55,37 @@ export class DeleteComponent implements OnInit {
     console.log(component);
 
     switch (component) {
-      case 'PaymentMethod':
-        // this.deleteCategory();
+      case 'PaymentMethodDelete':
+        this.closeAfterDelete();
+        break;
+      case 'PaymentMethodUpdate':
+        this.closeAfterUpdate();
         break;
 
-      case 'DiscountOffer':
-        // this.deleteCategory();
+      case 'TooExpensive':
+        this.cancelSubscription();
         break;
-
-      // case 'ProfessionManagement':
-      //   this.deleteProfession();
-      //   break;
-      // case 'AdminList':
-      //   this.deleteAdmin();
-      //   break;
 
       default: {
         break;
       }
     }
   }
-  // deleteCategory() {
-  //   this.closeModal();
-  // }
-  // deleteProfession() {
-  //   this.closeModal();
-  // }
-  // deleteAdmin() {
-  //   this.closeModal();
-  // }
 
   showAlert() {
     this.isShowAlert = true;
+  }
+
+  cancelSubscription() {
+    let storageData = JSON.parse(sessionStorage.getItem('subscriptions'));
+    let subscriptionIDs = storageData.map((res: any) => {
+      return new subscriptions(res.id);
+    });
+
+    const httpCalls: any = subscriptionIDs.map((data: any) => this.dataService.cancelSubscription(data.id));
+    const subscriptionList$ = forkJoin(httpCalls).pipe(map((results) => results.map((r: any) => ({ id: r.id }))));
+    subscriptionList$.subscribe((res) => {
+      this.closeModal();
+    });
   }
 }

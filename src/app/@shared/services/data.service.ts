@@ -24,4 +24,20 @@ export class DataService {
   getInvoices(id: any): Observable<any> {
     return this.http.get(`/listInvoices?id=${id}`);
   }
+
+  getPaymentMethods(id: any): Observable<any> {
+    return this.http.get(`/getPaymentMethods?id=${id}`);
+  }
+
+  attachPaymentMethod(body: any): Observable<any> {
+    return this.http.post(`/attachPaymentMethod`, body);
+  }
+  deletePaymentMethod(body: any): Observable<any> {
+    console.log(body);
+    return this.http.post(`/detachPaymentMethod`, body);
+  }
+
+  cancelSubscription(id: any): Observable<any> {
+    return this.http.delete(`/cancelSubscription?id=${id}`);
+  }
 }

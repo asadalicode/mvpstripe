@@ -18,11 +18,15 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NotifierModule } from 'angular-notifier';
+import { notifierDefaultOptions } from './@shared/notification.service';
 
 @NgModule({
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('./ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
@@ -37,6 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     AuthModule,
     Angulartics2Module.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
+    NotifierModule.withConfig(notifierDefaultOptions),
   ],
   declarations: [AppComponent],
   providers: [],

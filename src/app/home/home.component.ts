@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     this.dataService.dialogSubject.subscribe((res: any) => {
       if (res == 'done') {
         this.showAlert();
+        this.getCustomer_Subscription();
       }
     });
     this.getCustomer_Subscription();
@@ -70,17 +71,26 @@ export class HomeComponent implements OnInit {
 
   populateFormValues() {
     this.Form.patchValue({
-      month_bill: this.data.customerSubscriptionData.data[0].plan.amount / 100,
-      payment_info: this.data.customerPaymentMethod.data[0].type,
+      month_bill: this.data.customerSubscriptionData.data.length
+        ? this.data.customerSubscriptionData.data[0].plan.amount / 100
+        : '',
+      payment_info: this.data.customerPaymentMethod.data.length ? this.data.customerPaymentMethod.data[0].type : '',
       license_utilisation: [''],
-      next_payment_date: moment
-        .unix(this.data.customerSubscriptionData.data[0].current_period_end)
-        .format('MM/DD/YYYY'),
-      card_number: `********${this.data.customerPaymentMethod.data[0].card.last4}`,
+      next_payment_date: this.data.customerSubscriptionData.data.length
+        ? moment.unix(this.data.customerSubscriptionData.data[0].current_period_end).format('MM/DD/YYYY')
+        : '',
+      card_number: this.data.customerPaymentMethod.data.length
+        ? `********${this.data.customerPaymentMethod.data[0].card.last4}`
+        : '',
     });
   }
   showAlert() {
     this.isShowAlert = true;
+  }
+
+  routeToCancel() {
+    this.router.navigate(['/cancel-account']);
+    sessionStorage.setItem('subscriptions', JSON.stringify(this.data.customerSubscriptionData.data));
   }
   submit() {}
 }
