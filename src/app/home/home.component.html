@@ -10,7 +10,7 @@
       <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
     </div>
     <form *ngIf="!isLoading" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%">
+      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10%">
         <div fxLayout="column" fxLayoutGap="15px">
           <mat-form-field appearance="outline">
             <mat-label>This months bill</mat-label>
@@ -22,14 +22,19 @@
             <input matInput readonly="true" formControlName="next_payment_date" />
           </mat-form-field>
         </div>
-        <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="end flex-end" fxLayoutAlign.xs="">
+        <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="end flex-end" fxLayoutAlign.xs="" fxLayoutAlign.sm="">
           <!-- <div> -->
           <mat-form-field appearance="outline">
             <mat-label>Payment Info</mat-label>
             <input matInput readonly="true" formControlName="payment_info" />
           </mat-form-field>
           <!-- </div> -->
-          <div fxLayout="column" fxLayoutAlign="end flex-end" fxLayoutAlign.xs="start center">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="end flex-end"
+            fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center"
+          >
             <div class="w-100" fxLayout="row" fxLayoutAlign="center center">
               <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
               <mat-form-field appearance="outline" class="pl-2 w-100">
@@ -72,13 +77,15 @@
       <div
         fxLayout="row"
         fxLayout.xs="column"
+        fxLayout.sm="column"
         fxLayoutAlign="space-around center"
         fxLayoutGap="50px"
-        class="pt-5 px-md-5"
+        class="pt-5 px-sm-0 px-md-5"
       >
         <div
           fxFlex="40%"
           fxFlex.xs="100%"
+          fxLayout.sm="100%"
           class="border p-3 w-100"
           fxLayout="row"
           fxLayoutAlign="space-between center "
