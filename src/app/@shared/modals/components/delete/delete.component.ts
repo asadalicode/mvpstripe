@@ -32,7 +32,8 @@ export class DeleteComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     // this.dataModel = this.dataObject.data.data;
-    // this.data = this.dataObject;
+    this.data = this.dataObject;
+    console.log(this.data);
   }
   closeModal() {
     this.dialogRef.close({ event: 'done' });
@@ -82,8 +83,12 @@ export class DeleteComponent implements OnInit {
       return new subscriptions(res.id);
     });
 
-    const httpCalls: any = subscriptionIDs.map((data: any) => this.dataService.cancelSubscription(data.id));
-    const subscriptionList$ = forkJoin(httpCalls).pipe(map((results) => results.map((r: any) => ({ id: r.id }))));
+    const httpCalls: any = subscriptionIDs.map((data: any) =>
+      this.dataService.cancelSubscription(data.id)
+    );
+    const subscriptionList$ = forkJoin(httpCalls).pipe(
+      map((results) => results.map((r: any) => ({ id: r.id })))
+    );
     subscriptionList$.subscribe((res) => {
       this.closeModal();
     });

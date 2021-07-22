@@ -9,13 +9,13 @@ import { SharedModule } from '@shared';
 import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { environment } from '@env/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InvoicesComponent } from './components/invoices/invoices.component';
-import { CancelAccountComponent } from './components/cancel-account/cancel-account.component';
-import { TooExpensiveComponent } from './components/too-expensive/too-expensive.component';
-import { CancellationComponent } from './components/cancellation/cancellation.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { CancelAccountComponent } from './cancel-account/cancel-account.component';
+import { TooExpensiveComponent } from './too-expensive/too-expensive.component';
+import { CancellationComponent } from './cancellation/cancellation.component';
 import { NgxStripeModule } from 'ngx-stripe';
 @NgModule({
   imports: [

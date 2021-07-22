@@ -2,8 +2,18 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { StripeCardComponent, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import {
+  StripeCardComponent,
+  StripeCardNumberComponent,
+  StripeService,
+} from 'ngx-stripe';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { DataService } from '@app/@shared/services/data.service';
 import { NotifierService } from 'angular-notifier';
@@ -15,13 +25,11 @@ import { NotifierService } from 'angular-notifier';
 })
 export class AddPaymentMethodComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
-
-  socities: any = [];
-  isSocietyLayout = false;
   delete: boolean = true;
   dataModel: any = {};
   data: any = {};
   Form!: FormGroup;
+  isLoading: boolean = false;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -57,7 +65,7 @@ export class AddPaymentMethodComponent implements OnInit {
 
   private createForm() {
     this.Form = this.formBuilder.group({
-      id: [this.dataModel.data.id],
+      id: [this.dataModel.data.data.id],
       address_line1: ['', Validators.required],
       address_line2: ['', Validators.required],
       address_city: ['', Validators.required],
@@ -70,6 +78,7 @@ export class AddPaymentMethodComponent implements OnInit {
   };
 
   submit() {
+    this.isLoading = true;
     this.stripeService
       .createPaymentMethod({
         type: 'card',
@@ -87,10 +96,14 @@ export class AddPaymentMethodComponent implements OnInit {
         (res: any) => {
           if (res.error) {
             this.notifierService.notify('error', `${res.error.message}`);
+            this.isLoading = false;
           } else {
             this.paymentMethodData = res.paymentMethod;
             this.attachPaymentMethod();
-            this.notifierService.notify('success', 'Payment method created successfully');
+            this.notifierService.notify(
+              'success',
+              'Payment method created successfully'
+            );
           }
         },
         (error) => {
@@ -101,13 +114,19 @@ export class AddPaymentMethodComponent implements OnInit {
 
   attachPaymentMethod() {
     let body = {
-      customerId: this.dataModel.data.id,
+      customerId: this.dataModel.data.data.id,
       paymentId: this.paymentMethodData.id,
     };
 
-    this.dataService.attachPaymentMethod(body).subscribe((res: any) => {
-      this.closeModal('done');
-    });
+    this.dataService.attachPaymentMethod(body).subscribe(
+      (res: any) => {
+        this.closeModal('paymentAdded');
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+      }
+    );
   }
 
   closeModal(e: any) {

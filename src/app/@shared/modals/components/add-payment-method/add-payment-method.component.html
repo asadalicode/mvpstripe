@@ -51,7 +51,8 @@
           <div fxLayout="column">
             <div fxLayout="row">
               <button type="button" (click)="close()" mat-raised-button color="warn" class="mr-3">CANCEL</button>
-              <button type="submit" [disabled]="Form.invalid" mat-raised-button color="primary">SAVE</button>
+              <button type="submit" [disabled]="Form.invalid || isLoading" mat-raised-button
+                color="primary">SAVE</button>
             </div>
           </div>
         </div>
