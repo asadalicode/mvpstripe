@@ -11,13 +11,13 @@
     <div class="p-3 mt-0">
       <form (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
         <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="5%" class="mt-4">
-          <div fxFlex="50%" fxLayout="column" fxLayoutGap="10px">
+          <div fxFlex.lg="50%" fxFlex.md="50%" fxFlex="100%" fxLayout="column" fxLayoutGap="10px">
             <h6 class="mr-auto">Card Details</h6>
             <ngx-stripe-card class="black-box p-3" [options]="cardOptions"></ngx-stripe-card>
           </div>
         </div>
 
-        <div fxLayout="row" fxLayoutGap="5%" class="mt-5" fxLayoutAlign="space-between end">
+        <div fxLayout="row" fxLayoutGap="5%" class="mt-5 mob-wrap" fxLayoutAlign="space-between end">
           <div fxLayout="row wrap" fxLayoutGap="20px">
             <mat-form-field fxFlex="40%" appearance="outline">
               <mat-label>Billing Address</mat-label>

@@ -10,7 +10,7 @@
       <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
     </div>
     <form *ngIf="!isLoading" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
-      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10%">
+      <div fxLayout="row" fxLayout.xs="column" class="ipad-wrap" fxLayoutGap="10%">
         <div fxLayout="column" fxLayoutGap="15px">
           <mat-form-field appearance="outline">
             <mat-label>This months bill</mat-label>

@@ -30,7 +30,6 @@ export class AddPaymentMethodComponent implements OnInit {
         color: '#31325F',
         fontWeight: '300',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSize: '18px',
         '::placeholder': {
           color: '#CFD7E0',
         },

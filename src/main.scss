@@ -94,3 +94,40 @@ mat-radio-button {
 .w-200 {
   width: 200px;
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .ipad-wrap {
+    flex-wrap: wrap;
+  }
+  .w-120 {
+    width: 120px;
+  }
+}
+
+@media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .mob-wrap {
+    flex-wrap: wrap;
+  }
+  .pl-sm-0 {
+    padding-left: 0 !important;
+  }
+  .p-sm-0 {
+    padding: 0 !important;
+  }
+  .w-90 {
+    width: 80px !important;
+  }
+  button {
+    font-size: 12px !important;
+  }
+  h3 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .w-sm-100 {
+    width: 100% !important;
+  }
+}
