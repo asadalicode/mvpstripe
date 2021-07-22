@@ -1,0 +1,78 @@
+<div class="container">
+  <mat-card class="p-3 mt-5">
+    <form>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openItemModal('add-payment-method', AddPaymentMethodComponent, {}, 'PaymentMethod')"
+      >
+        <mat-icon>add</mat-icon> Add a payment method
+      </button>
+      <div fxLayout="row" fxLayoutGap="5%" class="mt-4 ipad-wrap mob-wrap">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <h6>Card Details</h6>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
+            <mat-form-field appearance="outline" class="pl-2">
+              <input matInput />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <h6>Expires</h6>
+
+          <mat-form-field appearance="outline">
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" class="justify-content-center">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <button mat-raised-button color="primary">Edit</button>
+            <button mat-raised-button color="primary">Replace</button>
+
+            <button
+              mat-raised-button
+              color="warn"
+              matTooltip="Uh oh, you must add a new payment method before you re move this one."
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="5%" class="mt-5 mob-wrap" fxLayoutAlign="space-between end">
+        <div fxLayout="column">
+          <mat-form-field appearance="outline">
+            <mat-label>Input</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Input</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Input</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Input</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <button mat-raised-button color="warn" class="mr-3">CANCEL</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openItemModal('delete', DeleteComponent, {}, 'PaymentMethod')"
+            >
+              SAVE
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

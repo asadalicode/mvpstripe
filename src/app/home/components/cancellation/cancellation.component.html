@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-card class="p-3 mt-5">
+    <div class="w-sm-50 m-auto">
+      <h2 class="text-center pb-3">All other reasons for cancelling</h2>
+
+      <p class="text-center pb-3">Why not book a call with a founder to resolve any issues you have?</p>
+    </div>
+    <form>
+      <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
+        <button
+          mat-raised-button
+          color="warn"
+          class="mr-3 font-12"
+          (click)="openItemModal('discount-offer', DiscountOfferComponent, {}, 'Cancellation')"
+        >
+          CONTINUE TO CANCEL
+        </button>
+        <button mat-raised-button color="primary" class="font-12">BOOK A CALL</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

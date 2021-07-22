@@ -1,0 +1,113 @@
+<div class="container">
+  <p *ngIf="isShowAlert">
+    <ngb-alert type="danger" [dismissible]="true">
+      <strong>We are sorry</strong> to see you go and are here for you if you would like to return. We will hold your
+      account for a short period of time before deleting your data to comply with GDPR regulations.
+    </ngb-alert>
+  </p>
+  <mat-card class="p-3 mt-5">
+    <div *ngIf="isLoading" class="col-md-12 pt-5 justify-content-center d-flex">
+      <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
+    </div>
+    <form *ngIf="!isLoading" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+      <div fxLayout="row" fxLayout.xs="column" class="ipad-wrap" fxLayoutGap="10%">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <mat-form-field appearance="outline">
+            <mat-label>This months bill</mat-label>
+            <input readonly="true" matInput formControlName="month_bill" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Next Payment Date</mat-label>
+
+            <input matInput readonly="true" formControlName="next_payment_date" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="end flex-end" fxLayoutAlign.xs="" fxLayoutAlign.sm="">
+          <!-- <div> -->
+          <mat-form-field appearance="outline">
+            <mat-label>Payment Info</mat-label>
+            <input matInput readonly="true" formControlName="payment_info" />
+          </mat-form-field>
+          <!-- </div> -->
+          <div
+            fxLayout="column"
+            fxLayoutAlign="end flex-end"
+            fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center"
+          >
+            <div class="w-100" fxLayout="row" fxLayoutAlign="center center">
+              <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
+              <mat-form-field appearance="outline" class="pl-2 w-100">
+                <input matInput readonly="true" formControlName="card_number" />
+              </mat-form-field>
+            </div>
+            <button mat-raised-button color="secondary" [routerLink]="['/payment-method/', data?.customerDetail?.id]">
+              EDIT
+            </button>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutGap="5px">
+          <div>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>License Utilisation</mat-label>
+              <button
+                mat-icon-button
+                matSuffix
+                matTooltip="Find out more about licenses by checking out our knowledge base article which explains all!"
+              >
+                <mat-icon>info</mat-icon>
+              </button>
+              <input readonly="true" formControlName="license_utilisation" matInput />
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start">
+            <div class="pb-4">
+              <p>{{ data?.customerSubscriptionData?.data?.length }} active licenses</p>
+              <p>2 pending Invitations</p>
+              <p>3 licenses available to assign</p>
+            </div>
+            <div fxLayout="row" fxLayoutGap="5px">
+              <button mat-raised-button color="secondary">EDIT LICENSES</button>
+              <button mat-raised-button color="warn" (click)="routeToCancel()">CANCEL PLAN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="50px"
+        class="pt-5 px-sm-0 px-md-5"
+      >
+        <div
+          fxFlex="40%"
+          fxFlex.xs="100%"
+          fxLayout.sm="100%"
+          class="border p-3 w-100"
+          fxLayout="row"
+          fxLayoutAlign="space-between center "
+        >
+          <p>Invoicing</p>
+          <button mat-raised-button color="secondary" [routerLink]="['/invoices/', data?.customerDetail?.id]">
+            VIEW
+          </button>
+        </div>
+        <div
+          class="border p-3 w-100"
+          fxLayout="row"
+          fxLayoutGap.xs="10px"
+          fxLayout.xs="column"
+          fxFlex="50%"
+          fxFlex.xs="100%"
+          fxLayoutAlign="space-between center"
+        >
+          <p>Need some help?</p>
+          <button mat-raised-button color="secondary">SUBMIT A SUPPORT TICKET</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

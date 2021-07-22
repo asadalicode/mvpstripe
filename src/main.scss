@@ -1,0 +1,133 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "~material-design-icons-iconfont/src/material-design-icons";
+
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+// Theme customization
+@import "theme/theme";
+@import "./assets/fonts/poppins/stylesheet.css";
+@import "../node_modules/angular-notifier/styles.scss";
+
+h2 {
+  font-family: "Poppins-Bold";
+}
+h6,
+h4 {
+  font-family: "Poppins-SemiBold";
+}
+p,
+button,
+mat-radio-button {
+  font-family: "Poppins-Regular" !important;
+  margin-bottom: 0;
+}
+.cus-pd {
+  padding-bottom: 1.34375em;
+}
+
+.black-box {
+  border: 1px solid darkgray;
+  flex: auto;
+  height: 50px;
+  margin-top: 0.3em;
+  border-radius: 7px;
+}
+
+.dark-box {
+  border: 1px solid darkgray;
+  color: #fff;
+  flex: auto;
+  width: 200px;
+  height: 50px;
+  background: dimgray;
+  border-radius: 7px;
+}
+
+.modal-header {
+  a {
+    display: flex;
+    text-decoration: none;
+    @media (max-width: 767px) {
+      display: initial;
+    }
+  }
+}
+
+.modal-content {
+  border: none !important;
+  overflow: hidden;
+  .modal-header {
+    border-bottom: none !important;
+  }
+}
+.backdropBackground {
+  filter: blur(0px);
+
+  background-color: #2c2b2b;
+  opacity: 0.8 !important;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.w-200 {
+  width: 200px;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  .ipad-wrap {
+    flex-wrap: wrap;
+  }
+  .w-120 {
+    width: 120px;
+  }
+}
+
+@media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .mob-wrap {
+    flex-wrap: wrap;
+  }
+  .pl-sm-0 {
+    padding-left: 0 !important;
+  }
+  .p-sm-0 {
+    padding: 0 !important;
+  }
+  .w-90 {
+    width: 80px !important;
+  }
+  button {
+    font-size: 12px !important;
+  }
+  h3 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .w-sm-100 {
+    width: 100% !important;
+  }
+}
