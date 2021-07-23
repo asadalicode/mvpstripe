@@ -8,17 +8,12 @@
   </div>
   <div class="modal-body text-center pt-1">
     <div class="p-3 p-sm-0">
-      <h2 class="text-center pb-3">Too expensive #2</h2>
-      <p class="text-center pb-3">HOW DOES 50% OFF YOUR NEXT 2 MONTHS SOUND? WILL THAT HELP?</p>
+      <!-- <h2 class="text-center pb-3">Too expensive #2</h2> -->
+      <p class="text-center p-3 border">HOW DOES 50% OFF YOUR NEXT 2 MONTHS SOUND? WILL THAT HELP?</p>
       <form>
         <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
-          <button
-            mat-raised-button
-            color="warn"
-            class="mr-3"
-            type="button"
-            (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')"
-          >
+          <button mat-raised-button color="warn" class="mr-3" type="button"
+            (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')">
             PLEASE CANCEL
           </button>
           <button mat-raised-button color="primary">SAVE 50%</button>

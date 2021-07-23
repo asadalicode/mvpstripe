@@ -1,23 +1,18 @@
 <div class="container">
   <mat-card class="p-3 mt-5">
-    <h2 class="text-center pb-3">Too expensive</h2>
     <div class="w-50 w-sm-100 m-auto">
-      <p class="text-center pb-3">
+      <p class="text-center border p-3">
         Maybe we can help.If you have more than one licenses maybe you could reduce the amount of licenses on your
         account?
       </p>
     </div>
     <form>
       <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
-        <button
-          mat-raised-button
-          color="warn"
-          class="mr-3"
-          (click)="openItemModal('discount-offer', DiscountOfferComponent, {}, 'TooExpensive')"
-        >
+        <button mat-raised-button color="warn" class="mr-3"
+          (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')">
           CONTINUE TO CANCEL
         </button>
-        <button mat-raised-button color="primary">SEE SAVINGS OPTIONS</button>
+        <button type="button" (click)="licenceBilling()" mat-raised-button color="primary">SEE SAVINGS OPTIONS</button>
       </div>
     </form>
   </mat-card>

@@ -4,7 +4,13 @@ import * as moment from 'moment';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -75,10 +81,14 @@ export class HomeComponent implements OnInit {
       month_bill: this.data.customerSubscriptionData.data.length
         ? this.data.customerSubscriptionData.data[0].plan.amount / 100
         : '',
-      payment_info: this.data.customerPaymentMethod.data.length ? this.data.customerPaymentMethod.data[0].type : '',
+      payment_info: this.data.customerPaymentMethod.data.length
+        ? this.data.customerPaymentMethod.data[0].type
+        : '',
       license_utilisation: [''],
       next_payment_date: this.data.customerSubscriptionData.data.length
-        ? moment.unix(this.data.customerSubscriptionData.data[0].current_period_end).format('MM/DD/YYYY')
+        ? moment
+            .unix(this.data.customerSubscriptionData.data[0].current_period_end)
+            .format('MM/DD/YYYY')
         : '',
       card_number: this.data.customerPaymentMethod.data.length
         ? `********${this.data.customerPaymentMethod.data[0].card.last4}`
@@ -91,7 +101,24 @@ export class HomeComponent implements OnInit {
 
   routeToCancel() {
     this.router.navigate(['/cancel-account']);
-    sessionStorage.setItem('subscriptions', JSON.stringify(this.data.customerSubscriptionData.data));
+    sessionStorage.setItem(
+      'subscriptions',
+      JSON.stringify(this.data.customerSubscriptionData.data)
+    );
   }
   submit() {}
+
+  licenceBilling() {
+    window.open(
+      'https://knowledge.performwithmvp.com/licenses-and-billing',
+      '_blank'
+    );
+  }
+
+  support() {
+    window.open(
+      'https://knowledge.performwithmvp.com/kb-tickets/new',
+      '_blank'
+    );
+  }
 }

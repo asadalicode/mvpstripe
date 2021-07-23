@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { DataService } from '@app/@shared/services/data.service';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
 
 export class subscriptions {
   constructor(public id: []) {}
@@ -27,6 +28,7 @@ export class DeleteComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private notifierService: NotifierService,
     public dialogRef: MatDialogRef<DeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public dataObject: any
   ) {}
@@ -90,6 +92,10 @@ export class DeleteComponent implements OnInit {
       map((results) => results.map((r: any) => ({ id: r.id })))
     );
     subscriptionList$.subscribe((res) => {
+      this.notifierService.notify(
+        'success',
+        'Your subscription has been cancelled successfully'
+      );
       this.closeModal();
     });
   }

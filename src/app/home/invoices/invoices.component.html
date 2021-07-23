@@ -3,60 +3,41 @@
     <h2 class="text-center pb-3">Invoices</h2>
     <form>
       <div fxLayout="column" class="mt-4 pl-5 pl-sm-0">
-        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
-          <div fxLayout="column">
-            <h6>Date</h6>
-            <mat-form-field appearance="outline" class="w-120 w-90">
-              <input matInput />
-            </mat-form-field>
+        <div *ngFor="let data of invoiceData; let i=index" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+          <div fxFlex="25%" fxLayout="column">
+            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
+              <h6 class="pt-1">Date</h6>
+            </div>
+            <div class="black-box" fxLayoutAlign="start center">
+              <span class="pl-2">{{data?.date}}</span>
+            </div>
           </div>
-          <div fxLayout="column">
-            <h6>Invoice</h6>
-            <mat-form-field appearance="outline" class="w-120 w-90">
-              <input matInput />
-            </mat-form-field>
+          <div fxFlex="30%" fxLayout="column">
+            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
+              <h6 class="pt-1">Invoice</h6>
+            </div>
+            <div class="black-box" fxLayoutAlign="start center">
+              <span class="pl-2">{{data?.id}}</span>
+            </div>
           </div>
-          <div fxLayout="column">
-            <h6>Amount</h6>
-            <mat-form-field appearance="outline" class="w-120 w-90">
-              <input matInput />
-            </mat-form-field>
+          <div fxFlex="25%" fxLayout="column">
+            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
+              <h6 class="pt-1">Amount</h6>
+            </div>
+            <div class="black-box" fxLayoutAlign="start center">
+              <span class="pl-2">{{data?.amount_paid/100}}</span>
+            </div>
           </div>
-          <div>
-            <button mat-icon-button color="primary"><mat-icon svgIcon="pdf"></mat-icon></button>
-          </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <div class="cus-pd">
-            <button mat-icon-button color="primary"><mat-icon svgIcon="pdf"></mat-icon></button>
+          <div fxLayoutAlign="end end">
+            <button type="button" (click)="downloadInvoice(data?.invoice_pdf)" mat-icon-button color="primary">
+              <mat-icon svgIcon="pdf"></mat-icon>
+            </button>
           </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="w-120 w-90">
-            <input matInput />
-          </mat-form-field>
-          <div class="cus-pd">
-            <button mat-icon-button color="primary"><mat-icon svgIcon="pdf"></mat-icon></button>
-          </div>
-        </div>
+
       </div>
       <div fxLayout="row" fxLayoutAlign="end end">
-        <button mat-raised-button color="warn" routerLink="home">Back</button>
+        <button type="button" mat-raised-button color="warn" routerLink="home">Back</button>
       </div>
     </form>
   </mat-card>

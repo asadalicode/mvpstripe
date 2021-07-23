@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancel-account',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cancel-account.component.scss'],
 })
 export class CancelAccountComponent implements OnInit {
-  constructor() {}
+  constructor(private route: Router) {}
 
   ngOnInit(): void {}
+
+  radioChange(e: any) {}
+
+  cancel() {
+    this.route.navigate(['/cancellation']);
+  }
 }

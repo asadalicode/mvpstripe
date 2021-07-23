@@ -1,24 +1,26 @@
 <div class="container">
   <mat-card class="p-3 mt-5">
-    <h2 class="text-center pb-3">Cancel Account</h2>
-    <h6 class="text-center pb-3">We are sorry to see you go. Could you tell us why?</h6>
+    <h6 class="text-center border p-3 ">We are sorry to see you go. Could you tell us why?</h6>
     <form>
       <div fxLayout="column" class="mt-4 pl-5 pl-sm-0">
         <div fxLayoutAlign="center center">
-          <mat-radio-group aria-label="Select an option" fxLayout="column" fxLayoutGap="10px">
-            <mat-radio-button value="1" color="primary">MVP is to expensive</mat-radio-button>
+          <mat-radio-group (change)="radioChange($event)" aria-label="Select an option" fxLayout="column"
+            fxLayoutGap="10px">
+            <mat-radio-button value="1" routerLink="/too-expensive" color="primary">MVP is to expensive
+            </mat-radio-button>
             <mat-radio-button value="2" color="primary">We no longer need it</mat-radio-button>
             <mat-radio-button value="3" color="primary">We intend to use a different tool</mat-radio-button>
             <mat-radio-button value="4" color="primary">We need features MVP doesn't have</mat-radio-button>
 
             <mat-radio-button value="5" color="primary">My team couldn't adopt to using MVP</mat-radio-button>
-            <mat-radio-button value="6" color="primary" routerLink="/cancellation">Other</mat-radio-button>
+            <mat-radio-button value="6" color="primary">Other</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="end end">
-        <button mat-raised-button color="warn" class="mr-3 font-12" routerLink="home">GO BACK</button>
-        <button mat-raised-button color="primary" class="font-12" routerLink="/too-expensive">
+        <button type="button" mat-raised-button color="warn" class="mr-3 font-12" routerLink="home">GO BACK</button>
+        <button type="button" (click)="cancel()" mat-raised-button color="primary" class="font-12"
+          routerLink="/too-expensive">
           CONFIRM AND CANCEL PLAN
         </button>
       </div>
