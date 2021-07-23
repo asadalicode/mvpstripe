@@ -16,25 +16,12 @@ export class TooExpensiveComponent implements OnInit {
   constructor(private matDialog: MatDialog) {}
 
   ngOnInit(): void {}
-  openItemModal(
-    type: string,
-    component: any,
-    data?: {},
-    fromComponent?: string
-  ) {
+  openItemModal(type: string, component: any, data?: {}, fromComponent?: string) {
     this.matDialog.closeAll();
-    const dialogRef = this.popupRef.openModal(
-      type,
-      component,
-      { data: data },
-      fromComponent
-    );
+    const dialogRef = this.popupRef.openModal(type, component, { data: data }, fromComponent);
   }
 
   licenceBilling() {
-    window.open(
-      'https://knowledge.performwithmvp.com/licenses-and-billing',
-      '_blank'
-    );
+    window.open('https://knowledge.performwithmvp.com/licenses-and-billing', '_blank');
   }
 }

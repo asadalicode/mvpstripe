@@ -8,8 +8,12 @@
     </div>
     <form>
       <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
-        <button mat-raised-button color="warn" class="mr-3"
-          (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')">
+        <button
+          mat-raised-button
+          color="warn"
+          class="mr-3"
+          (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')"
+        >
           CONTINUE TO CANCEL
         </button>
         <button type="button" (click)="licenceBilling()" mat-raised-button color="primary">SEE SAVINGS OPTIONS</button>

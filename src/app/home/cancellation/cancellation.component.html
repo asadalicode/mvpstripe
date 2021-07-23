@@ -7,12 +7,17 @@
     </div>
     <form>
       <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
-        <button mat-raised-button color="warn" class="mr-3 font-12"
-          (click)="openItemModal('discount-offer', DiscountOfferComponent, {}, 'Cancellation')">
+        <button
+          mat-raised-button
+          color="warn"
+          class="mr-3 font-12"
+          (click)="openItemModal('discount-offer', DiscountOfferComponent, {}, 'Cancellation')"
+        >
           CONTINUE TO CANCEL
         </button>
-        <button type="button" (click)="bookCall()" mat-raised-button color="primary" class="font-12">BOOK A
-          CALL</button>
+        <button type="button" (click)="bookCall()" mat-raised-button color="primary" class="font-12">
+          BOOK A CALL
+        </button>
       </div>
     </form>
   </mat-card>

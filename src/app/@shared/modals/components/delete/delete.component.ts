@@ -85,17 +85,10 @@ export class DeleteComponent implements OnInit {
       return new subscriptions(res.id);
     });
 
-    const httpCalls: any = subscriptionIDs.map((data: any) =>
-      this.dataService.cancelSubscription(data.id)
-    );
-    const subscriptionList$ = forkJoin(httpCalls).pipe(
-      map((results) => results.map((r: any) => ({ id: r.id })))
-    );
+    const httpCalls: any = subscriptionIDs.map((data: any) => this.dataService.cancelSubscription(data.id));
+    const subscriptionList$ = forkJoin(httpCalls).pipe(map((results) => results.map((r: any) => ({ id: r.id }))));
     subscriptionList$.subscribe((res) => {
-      this.notifierService.notify(
-        'success',
-        'Your subscription has been cancelled successfully'
-      );
+      this.notifierService.notify('success', 'Your subscription has been cancelled successfully');
       this.closeModal();
     });
   }

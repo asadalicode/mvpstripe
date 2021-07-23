@@ -2,18 +2,8 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {
-  StripeCardComponent,
-  StripeCardNumberComponent,
-  StripeService,
-} from 'ngx-stripe';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { StripeCardComponent, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { DataService } from '@app/@shared/services/data.service';
 import { NotifierService } from 'angular-notifier';
@@ -100,10 +90,7 @@ export class AddPaymentMethodComponent implements OnInit {
           } else {
             this.paymentMethodData = res.paymentMethod;
             this.attachPaymentMethod();
-            this.notifierService.notify(
-              'success',
-              'Payment method created successfully'
-            );
+            this.notifierService.notify('success', 'Payment method created successfully');
           }
         },
         (error) => {

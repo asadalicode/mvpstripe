@@ -3,18 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddPaymentMethodComponent } from '@app/@shared/modals/components/add-payment-method/add-payment-method.component';
 import { DeleteComponent } from '@app/@shared/modals/components/delete/delete.component';
 import { PopupModal } from '@app/@shared/Models/popup-modal';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import {
-  StripeCardComponent,
-  StripeCardNumberComponent,
-  StripeService,
-} from 'ngx-stripe';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { StripeCardComponent, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { DataService } from '@app/@shared/services/data.service';
 import { NotifierService } from 'angular-notifier';
@@ -28,8 +18,7 @@ export class PaymentMethodComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
   isLoading: boolean = false;
   customerId: string = '';
-  toolTip: string =
-    'Uh oh, you must add a new payment method before you re move this one.';
+  toolTip: string = 'Uh oh, you must add a new payment method before you re move this one.';
   DeleteComponent = DeleteComponent;
   AddPaymentMethodComponent = AddPaymentMethodComponent;
   popupRef = new PopupModal(this.matDialog);
@@ -115,12 +104,7 @@ export class PaymentMethodComponent implements OnInit {
 
   submit() {}
 
-  openItemModal(
-    type: string,
-    component: any,
-    data?: {},
-    fromComponent?: string
-  ) {
+  openItemModal(type: string, component: any, data?: {}, fromComponent?: string) {
     this.matDialog.closeAll();
     const dialogRef = this.popupRef.openModal(
       type,
@@ -167,10 +151,7 @@ export class PaymentMethodComponent implements OnInit {
           } else {
             this.paymentMethodData = res.paymentMethod;
             this.attachPaymentMethod();
-            this.notifierService.notify(
-              'success',
-              'Payment method updated successfully'
-            );
+            this.notifierService.notify('success', 'Payment method updated successfully');
           }
         },
         (error) => {
@@ -204,10 +185,7 @@ export class PaymentMethodComponent implements OnInit {
       (res: any) => {
         this.getPaymentMethods();
         if (showAlert) {
-          this.notifierService.notify(
-            'success',
-            'Payment method deleted successfully'
-          );
+          this.notifierService.notify('success', 'Payment method deleted successfully');
         }
       },
       (error) => {

@@ -29,8 +29,12 @@
             <input matInput readonly="true" formControlName="payment_info" />
           </mat-form-field>
           <!-- </div> -->
-          <div fxLayout="column" fxLayoutAlign="end flex-end" fxLayoutAlign.xs="start center"
-            fxLayoutAlign.sm="start center">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="end flex-end"
+            fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center"
+          >
             <div class="w-100" fxLayout="row" fxLayoutAlign="center center">
               <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" class="cus-pd" />
               <mat-form-field appearance="outline" class="pl-2 w-100">
@@ -46,8 +50,13 @@
           <div>
             <mat-form-field class="w-100" appearance="outline">
               <mat-label>License Utilisation</mat-label>
-              <button type="button" (click)="licenceBilling()" mat-icon-button matSuffix
-                matTooltip="Find out more about licenses by checking out our knowledge base article which explains all!">
+              <button
+                type="button"
+                (click)="licenceBilling()"
+                mat-icon-button
+                matSuffix
+                matTooltip="Find out more about licenses by checking out our knowledge base article which explains all!"
+              >
                 <mat-icon>info</mat-icon>
               </button>
               <input readonly="true" formControlName="license_utilisation" matInput />
@@ -60,25 +69,45 @@
               <p>3 licenses available to assign</p>
             </div>
             <div fxLayout="row" fxLayoutGap="5px">
-              <button type="button" (click)="licenceBilling()" mat-raised-button color="secondary">EDIT
-                LICENSES</button>
+              <button type="button" (click)="licenceBilling()" mat-raised-button color="secondary">
+                EDIT LICENSES
+              </button>
               <button type="button" mat-raised-button color="warn" (click)="routeToCancel()">CANCEL PLAN</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-around center"
-        fxLayoutGap="50px" class="pt-5 px-sm-0 px-md-5">
-        <div fxFlex="40%" fxFlex.xs="100%" fxLayout.sm="100%" class="border p-3 w-100" fxLayout="row"
-          fxLayoutAlign="space-between center ">
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayout.sm="column"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="50px"
+        class="pt-5 px-sm-0 px-md-5"
+      >
+        <div
+          fxFlex="40%"
+          fxFlex.xs="100%"
+          fxLayout.sm="100%"
+          class="border p-3 w-100"
+          fxLayout="row"
+          fxLayoutAlign="space-between center "
+        >
           <p>Invoicing</p>
           <button mat-raised-button color="secondary" [routerLink]="['/invoices/', data?.customerDetail?.id]">
             VIEW
           </button>
         </div>
-        <div class="border p-3 w-100" fxLayout="row" fxLayoutGap.xs="10px" fxLayout.xs="column" fxFlex="50%"
-          fxFlex.xs="100%" fxLayoutAlign="space-between center">
+        <div
+          class="border p-3 w-100"
+          fxLayout="row"
+          fxLayoutGap.xs="10px"
+          fxLayout.xs="column"
+          fxFlex="50%"
+          fxFlex.xs="100%"
+          fxLayoutAlign="space-between center"
+        >
           <p>Need some help?</p>
           <button type="button" (click)="support()" mat-raised-button color="secondary">SUBMIT A SUPPORT TICKET</button>
         </div>

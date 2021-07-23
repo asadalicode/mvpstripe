@@ -57,7 +57,7 @@ mat-radio-button {
   border: 1px solid darkgray;
   color: #fff;
   flex: auto;
-  width: 200px;
+  width: auto;
   height: 50px;
   background: dimgray;
   border-radius: 7px;
@@ -129,5 +129,27 @@ mat-radio-button {
   }
   .w-sm-100 {
     width: 100% !important;
+  }
+  .pt-sm-15 {
+    padding-top: 15px;
+  }
+  .dark-box {
+    width: 280px !important;
+  }
+  .w-sm-250 {
+    width: 280px !important;
+  }
+  .scroll {
+    overflow-y: scroll;
+    padding-bottom: 20px;
+  }
+  .pt-mob-15 {
+    margin-top: 15px !important;
+  }
+  .payment-header {
+    padding: 0;
+    h3 {
+      font-size: 18px !important;
+    }
   }
 }

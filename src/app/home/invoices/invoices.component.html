@@ -1,42 +1,59 @@
 <div class="container">
-  <mat-card class="p-3 mt-5">
+  <mat-card class="p-3 mt-5 mb-3">
     <h2 class="text-center pb-3">Invoices</h2>
     <form>
-      <div fxLayout="column" class="mt-4 pl-5 pl-sm-0">
-        <div *ngFor="let data of invoiceData; let i=index" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
-          <div fxFlex="25%" fxLayout="column">
-            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
-              <h6 class="pt-1">Date</h6>
+      <div class="scroll">
+        <div fxLayout="column" class="mt-4 pl-5 pl-sm-0">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start end">
+            <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
+              <div class="dark-box" fxLayoutAlign="center center">
+                <h6 class="pt-1">Date</h6>
+              </div>
             </div>
-            <div class="black-box" fxLayoutAlign="start center">
-              <span class="pl-2">{{data?.date}}</span>
+            <div fxFlex.lg="30%" fxFlex.xl="30%" fxFlex.md="30%" fxFlex.sm="40%" fxFlex.xs="100%" fxLayout="column">
+              <div class="dark-box" fxLayoutAlign="center center">
+                <h6 class="pt-1">Invoice</h6>
+              </div>
             </div>
-          </div>
-          <div fxFlex="30%" fxLayout="column">
-            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
-              <h6 class="pt-1">Invoice</h6>
-            </div>
-            <div class="black-box" fxLayoutAlign="start center">
-              <span class="pl-2">{{data?.id}}</span>
-            </div>
-          </div>
-          <div fxFlex="25%" fxLayout="column">
-            <div *ngIf="i==0" class="dark-box" fxLayoutAlign="center center">
-              <h6 class="pt-1">Amount</h6>
-            </div>
-            <div class="black-box" fxLayoutAlign="start center">
-              <span class="pl-2">{{data?.amount_paid/100}}</span>
+            <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
+              <div class="dark-box" fxLayoutAlign="center center">
+                <h6 class="pt-1">Amount</h6>
+              </div>
             </div>
           </div>
-          <div fxLayoutAlign="end end">
-            <button type="button" (click)="downloadInvoice(data?.invoice_pdf)" mat-icon-button color="primary">
-              <mat-icon svgIcon="pdf"></mat-icon>
-            </button>
+          <div
+            *ngFor="let data of invoiceData; let i = index"
+            fxLayout="row"
+            fxLayoutGap="10px"
+            fxLayoutAlign="start end"
+          >
+            <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
+              <div *ngIf="i == 0" fxLayoutAlign="center center"></div>
+              <div class="black-box w-sm-250" fxLayoutAlign="start center">
+                <span class="pl-2">{{ data?.date }}</span>
+              </div>
+            </div>
+            <div fxFlex.lg="30%" fxFlex.xl="30%" fxFlex.md="30%" fxFlex.sm="40%" fxFlex.xs="100%" fxLayout="column">
+              <div *ngIf="i == 0" fxLayoutAlign="center center"></div>
+              <div class="black-box w-sm-250" fxLayoutAlign="start center">
+                <span class="pl-2">{{ data?.id }}</span>
+              </div>
+            </div>
+            <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
+              <div *ngIf="i == 0" fxLayoutAlign="center center"></div>
+              <div class="black-box w-sm-250" fxLayoutAlign="start center">
+                <span class="pl-2">{{ data?.amount_paid / 100 }}</span>
+              </div>
+            </div>
+            <div fxLayoutAlign="end end">
+              <button type="button" (click)="downloadInvoice(data?.invoice_pdf)" mat-icon-button color="primary">
+                <mat-icon svgIcon="pdf"></mat-icon>
+              </button>
+            </div>
           </div>
         </div>
-
       </div>
-      <div fxLayout="row" fxLayoutAlign="end end">
+      <div fxLayout="row" fxLayoutAlign="end end" class="mt-3">
         <button type="button" mat-raised-button color="warn" routerLink="home">Back</button>
       </div>
     </form>

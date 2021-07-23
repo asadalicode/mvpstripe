@@ -1,8 +1,10 @@
 <div class="container">
   <mat-card class="p-3 mt-5 mb-5">
-
-    <button mat-raised-button color="primary"
-      (click)="openItemModal('add-payment-method', AddPaymentMethodComponent, { id: customerId}, 'PaymentMethod')">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openItemModal('add-payment-method', AddPaymentMethodComponent, { id: customerId }, 'PaymentMethod')"
+    >
       <mat-icon>add</mat-icon> Add a payment method
     </button>
 
@@ -11,41 +13,84 @@
     </div>
 
     <div [style.visibility]="!isLoading ? 'visible' : 'hidden'">
-      <div *ngFor="let data of customerData?.data; let i=index" fxLayout="row" fxLayoutAlign=" end center "
-        fxLayoutGap="5%" class="mt-4 ipad-wrap mob-wrap">
-        <div fxFlex="30%" fxLayout="column" fxLayoutGap="10px">
-          <h6 *ngIf="i==0">Card Details</h6>
+      <div
+        *ngFor="let data of customerData?.data; let i = index"
+        fxLayout="row"
+        fxLayoutAlign=" end center "
+        fxLayoutGap="5%"
+        class="mt-4 ipad-wrap mob-wrap"
+      >
+        <div
+          fxFlex.sm="30%"
+          fxFlex.lg="30%"
+          fxFlex.xl="30%"
+          fxFlex.md="30%"
+          fxFlex.xs="60%"
+          fxLayout="column"
+          fxLayoutGap="10px"
+        >
+          <h6 *ngIf="i == 0">Card Details</h6>
           <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
             <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" />
             <div class="black-box" fxLayoutAlign="start center">
-              <span class="pl-2">********{{data?.card?.last4}}</span>
+              <span class="pl-2">********{{ data?.card?.last4 }}</span>
             </div>
           </div>
         </div>
-        <div fxFlex="15%" fxLayout="column" fxLayoutGap="10px">
-          <h6 *ngIf="i==0">Expires</h6>
+        <div
+          fxFlex.sm="15%"
+          fxFlex.lg="15%"
+          fxFlex.xl="15%"
+          fxFlex.md="15%"
+          fxFlex.xs="30%"
+          fxLayout="column"
+          fxLayoutGap="10px"
+        >
+          <h6 *ngIf="i == 0">Expires</h6>
 
           <div class="black-box" fxLayoutAlign="start center">
-            <span class="pl-2">{{data?.card?.exp_month}}/{{data?.card?.exp_year}}</span>
+            <span class="pl-2">{{ data?.card?.exp_month }}/{{ data?.card?.exp_year }}</span>
           </div>
         </div>
-        <div fxLayout="column" class="justify-content-center">
+        <div fxLayout="column" class="justify-content-center pt-sm-15">
           <div fxLayout="row" fxLayoutGap="5px">
-            <button (click)="selectMethod(data)" type="button" mat-raised-button
-              [color]="selectedMethod?.id==data?.id? 'primary':'secondary'">Edit</button>
-            <button (click)="selectMethod(data)" type="button" mat-raised-button
-              [color]="selectedMethod?.id==data?.id? 'primary':'secondary'">Replace</button>
+            <button
+              (click)="selectMethod(data)"
+              type="button"
+              mat-raised-button
+              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'"
+            >
+              Edit
+            </button>
+            <button
+              (click)="selectMethod(data)"
+              type="button"
+              mat-raised-button
+              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'"
+            >
+              Replace
+            </button>
 
-            <button type="button" (click)="selectMethod(data,'delete')" mat-raised-button color="warn"
-              [matTooltip]="customerData?.data?.length<2?toolTip:''">
+            <button
+              type="button"
+              (click)="selectMethod(data, 'delete')"
+              mat-raised-button
+              color="warn"
+              [matTooltip]="customerData?.data?.length < 2 ? toolTip : ''"
+            >
               Delete
             </button>
           </div>
         </div>
       </div>
 
-      <form *ngIf="selectedMethod" (ngSubmit)="openItemModal('delete', DeleteComponent, {}, 'PaymentMethodUpdate')"
-        [formGroup]="Form" #f novalidate>
+      <form
+        *ngIf="selectedMethod"
+        (ngSubmit)="openItemModal('delete', DeleteComponent, {}, 'PaymentMethodUpdate')"
+        [formGroup]="Form"
+        #f
+        novalidate
+      >
         <div fxLayout="row" class="mt-5 mob-wrap" fxLayoutAlign="space-between end">
           <div class="w-25" fxLayout="column">
             <ngx-stripe-card class="black-box p-3 mb-4" [options]="cardOptions"></ngx-stripe-card>
@@ -81,9 +126,7 @@
           <div fxLayout="column">
             <div fxLayout="row">
               <button type="button" routerLink="/" mat-raised-button color="warn" class="mr-3">CANCEL</button>
-              <button [disabled]="Form.invalid" mat-raised-button color="primary">
-                SAVE
-              </button>
+              <button [disabled]="Form.invalid" mat-raised-button color="primary">SAVE</button>
             </div>
           </div>
         </div>

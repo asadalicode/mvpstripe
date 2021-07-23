@@ -4,12 +4,7 @@ export class PopupModal {
 
   constructor(public matDialog: MatDialog) {}
 
-  openModal(
-    type: string,
-    componentRef: any,
-    modalData?: object,
-    fromComponent?: string
-  ) {
+  openModal(type: string, componentRef: any, modalData?: object, fromComponent?: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;

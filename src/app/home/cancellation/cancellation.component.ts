@@ -17,19 +17,9 @@ export class CancellationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openItemModal(
-    type: string,
-    component: any,
-    data?: {},
-    fromComponent?: string
-  ) {
+  openItemModal(type: string, component: any, data?: {}, fromComponent?: string) {
     this.matDialog.closeAll();
-    const dialogRef = this.popupRef.openModal(
-      type,
-      component,
-      { data: data },
-      fromComponent
-    );
+    const dialogRef = this.popupRef.openModal(type, component, { data: data }, fromComponent);
   }
 
   bookCall() {
