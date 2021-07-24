@@ -17,6 +17,7 @@ import { CancelAccountComponent } from './cancel-account/cancel-account.componen
 import { TooExpensiveComponent } from './too-expensive/too-expensive.component';
 import { CancellationComponent } from './cancellation/cancellation.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { RequestPaymentComponent } from './request-payment/request-payment.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     CancelAccountComponent,
     TooExpensiveComponent,
     CancellationComponent,
+    RequestPaymentComponent,
   ],
 })
 export class HomeModule {}

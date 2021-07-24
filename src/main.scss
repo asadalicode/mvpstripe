@@ -101,11 +101,21 @@ mat-radio-button {
   .w-120 {
     width: 120px;
   }
+  .w-sm-100 {
+    width: 50% !important;
+  }
 }
 
 @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+  .w-sm-100 {
+    width: 50% !important;
+  }
 }
 @media (min-width: 320px) and (max-width: 480px) {
+  .modal-body {
+    padding: 0rem;
+    padding-bottom: 1em;
+  }
   .mob-wrap {
     flex-wrap: wrap;
   }

@@ -1,10 +1,7 @@
 <div class="container">
   <mat-card class="p-3 mt-5 mb-5">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="openItemModal('add-payment-method', AddPaymentMethodComponent, { id: customerId }, 'PaymentMethod')"
-    >
+    <button mat-raised-button color="primary"
+      (click)="openItemModal('add-payment-method', AddPaymentMethodComponent, { id: customerId }, 'PaymentMethod')">
       <mat-icon>add</mat-icon> Add a payment method
     </button>
 
@@ -13,22 +10,10 @@
     </div>
 
     <div [style.visibility]="!isLoading ? 'visible' : 'hidden'">
-      <div
-        *ngFor="let data of customerData?.data; let i = index"
-        fxLayout="row"
-        fxLayoutAlign=" end center "
-        fxLayoutGap="5%"
-        class="mt-4 ipad-wrap mob-wrap"
-      >
-        <div
-          fxFlex.sm="30%"
-          fxFlex.lg="30%"
-          fxFlex.xl="30%"
-          fxFlex.md="30%"
-          fxFlex.xs="60%"
-          fxLayout="column"
-          fxLayoutGap="10px"
-        >
+      <div *ngFor="let data of customerData?.data; let i = index" fxLayout="row" fxLayoutAlign=" end center "
+        fxLayoutGap="5%" class="mt-4 ipad-wrap mob-wrap">
+        <div fxFlex.sm="30%" fxFlex.lg="30%" fxFlex.xl="30%" fxFlex.md="30%" fxFlex.xs="60%" fxLayout="column"
+          fxLayoutGap="10px">
           <h6 *ngIf="i == 0">Card Details</h6>
           <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
             <img src="./../../assets/Visa_logo_PNG1.png" alt="" width="50px" />
@@ -37,15 +22,8 @@
             </div>
           </div>
         </div>
-        <div
-          fxFlex.sm="15%"
-          fxFlex.lg="15%"
-          fxFlex.xl="15%"
-          fxFlex.md="15%"
-          fxFlex.xs="30%"
-          fxLayout="column"
-          fxLayoutGap="10px"
-        >
+        <div fxFlex.sm="15%" fxFlex.lg="15%" fxFlex.xl="15%" fxFlex.md="15%" fxFlex.xs="30%" fxLayout="column"
+          fxLayoutGap="10px">
           <h6 *ngIf="i == 0">Expires</h6>
 
           <div class="black-box" fxLayoutAlign="start center">
@@ -54,45 +32,27 @@
         </div>
         <div fxLayout="column" class="justify-content-center pt-sm-15">
           <div fxLayout="row" fxLayoutGap="5px">
-            <button
-              (click)="selectMethod(data)"
-              type="button"
-              mat-raised-button
-              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'"
-            >
+            <button (click)="selectMethod(data)" type="button" mat-raised-button
+              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'">
               Edit
             </button>
-            <button
-              (click)="selectMethod(data)"
-              type="button"
-              mat-raised-button
-              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'"
-            >
+            <button (click)="selectMethod(data)" type="button" mat-raised-button
+              [color]="selectedMethod?.id == data?.id ? 'primary' : 'secondary'">
               Replace
             </button>
 
-            <button
-              type="button"
-              (click)="selectMethod(data, 'delete')"
-              mat-raised-button
-              color="warn"
-              [matTooltip]="customerData?.data?.length < 2 ? toolTip : ''"
-            >
+            <button type="button" (click)="selectMethod(data, 'delete')" mat-raised-button color="warn"
+              [matTooltip]="customerData?.data?.length < 2 ? toolTip : ''">
               Delete
             </button>
           </div>
         </div>
       </div>
 
-      <form
-        *ngIf="selectedMethod"
-        (ngSubmit)="openItemModal('delete', DeleteComponent, {}, 'PaymentMethodUpdate')"
-        [formGroup]="Form"
-        #f
-        novalidate
-      >
+      <form *ngIf="selectedMethod" (ngSubmit)="openItemModal('delete', DeleteComponent, {}, 'PaymentMethodUpdate')"
+        [formGroup]="Form" #f novalidate>
         <div fxLayout="row" class="mt-5 mob-wrap" fxLayoutAlign="space-between end">
-          <div class="w-25" fxLayout="column">
+          <div class="w-25 w-sm-100" fxLayout="column">
             <ngx-stripe-card class="black-box p-3 mb-4" [options]="cardOptions"></ngx-stripe-card>
             <mat-form-field fxFlex="40%" appearance="outline">
               <mat-label>Billing Address</mat-label>

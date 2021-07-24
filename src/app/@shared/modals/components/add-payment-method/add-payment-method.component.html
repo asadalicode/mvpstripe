@@ -8,17 +8,17 @@
     </button>
   </div>
   <div class="modal-body text-center pt-1">
-    <div class="p-3 mt-0">
+    <div class="p-3 p-sm-0 mt-0">
       <form (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
         <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="5%" class="mt-4">
           <div fxFlex.lg="50%" fxFlex.md="50%" fxFlex="100%" fxLayout="column" fxLayoutGap="10px">
             <h6 class="mr-auto">Card Details</h6>
-            <ngx-stripe-card class="black-box p-3" [options]="cardOptions"></ngx-stripe-card>
+            <ngx-stripe-card class="black-box p-3 " [options]="cardOptions"></ngx-stripe-card>
           </div>
         </div>
 
         <div fxLayout="row" fxLayoutGap="5%" class="mt-5 pt-mob-15 mob-wrap" fxLayoutAlign="space-between end">
-          <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutGap.xs="0px">
+          <div fxLayout="row wrap" class="w-100" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutGap.xs="0px">
             <mat-form-field fxFlex="40%" fxFlex.xs="100%" appearance="outline">
               <mat-label>Billing Address</mat-label>
               <input matInput formControlName="address_line1" />
