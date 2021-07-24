@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
 
   getCustomer_Subscription() {
     this.isLoading = true;
-    // Replace customerID with your internal customerId
-    this.dataService.getCustomer_Subscription('cus_JtoExnGNvNWBvG').subscribe(
+    // Replace customerID with your internal customerId //lee cus_JtoExnGNvNWBvG
+    this.dataService.getCustomer_Subscription('cus_Jq7hwNmp0s0yaP').subscribe(
       (res: any) => {
         this.data.customerSubscriptionData = res[0];
         this.data.customerDetail = res[1];

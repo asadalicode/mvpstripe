@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+import { PaymentIntent } from '@stripe/stripe-js';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -39,5 +40,9 @@ export class DataService {
 
   cancelSubscription(id: any): Observable<any> {
     return this.http.delete(`/cancelSubscription?id=${id}`);
+  }
+
+  createPaymentIntent(body: any): Observable<any> {
+    return this.http.post<PaymentIntent>('/createPaymentIntent', body);
   }
 }

@@ -1,3 +1,7 @@
-<ngx-stripe-payment-request-button [paymentOptions]="paymentRequestOptions" (paymentMethod)="onPaymentMethod($event)"
-  (shippingaddresschange)="onShippingAddressChange($event)" (notavailable)="onNotAvailable()">
+<ngx-stripe-payment-request-button
+  [paymentOptions]="paymentRequestOptions"
+  (paymentMethod)="onPaymentMethod($event)"
+  (shippingaddresschange)="onShippingAddressChange($event)"
+  (notavailable)="onNotAvailable()"
+>
 </ngx-stripe-payment-request-button>

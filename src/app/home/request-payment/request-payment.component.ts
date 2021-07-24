@@ -10,6 +10,7 @@ import {
   PaymentIntent,
   PaymentRequestShippingAddressEvent,
 } from '@stripe/stripe-js';
+import { DataService } from '@app/@shared/services/data.service';
 @Component({
   selector: 'app-request-payment',
   templateUrl: './request-payment.component.html',
@@ -23,17 +24,18 @@ export class RequestPaymentComponent implements OnInit {
   };
 
   paymentRequestOptions = {
-    country: 'ES',
-    currency: 'eur',
+    country: 'US',
+    currency: 'usd',
     total: {
       label: 'Demo Total',
-      amount: 1099,
+      amount: 1000,
     },
+
     requestPayerName: true,
     requestPayerEmail: true,
   };
 
-  constructor(private http: HttpClient, private stripeService: StripeService) {}
+  constructor(private http: HttpClient, private dataService: DataService, private stripeService: StripeService) {}
 
   onPaymentMethod(ev: PaymentRequestPaymentMethodEvent) {
     this.createPaymentIntent()
@@ -43,7 +45,7 @@ export class RequestPaymentComponent implements OnInit {
           return this.stripeService
             .confirmCardPayment(
               pi.client_secret,
-              { payment_method: ev.paymentMethod.id },
+              { payment_method: ev.paymentMethod.id, receipt_email: 'asadali.code123@gmail.com' },
               { handleActions: false }
             )
             .pipe(
@@ -62,9 +64,7 @@ export class RequestPaymentComponent implements OnInit {
                   // payment method collection interface.
                   ev.complete('success');
                   // Let Stripe.js handle the rest of the payment flow.
-                  return this.stripeService.confirmCardPayment(
-                    pi.client_secret
-                  );
+                  return this.stripeService.confirmCardPayment(pi.client_secret);
                 }
               })
             );
@@ -74,6 +74,7 @@ export class RequestPaymentComponent implements OnInit {
         if (result.error) {
           // The payment failed -- ask your customer for a new payment method.
         } else {
+          console.log(result);
           // The payment has succeeded.
         }
       });
@@ -109,8 +110,13 @@ export class RequestPaymentComponent implements OnInit {
     // Replace this with your own custom implementation
     // to perform a Payment Intent Creation
     // You will need your own Server to do that
-    return this.http.post<PaymentIntent>('/create-payment-intent', {
+    let data = {
       amount: this.paymentRequestOptions.total.amount,
-    });
+      // customerID: 'cus_JtoExnGNvNWBvG', //lee
+      customerID: 'cus_Jq7hwNmp0s0yaP', //asad
+
+      email: 'asadali.code123@gmail.com',
+    };
+    return this.dataService.createPaymentIntent(data);
   }
 }
