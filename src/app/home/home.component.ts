@@ -4,7 +4,13 @@ import * as moment from 'moment';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,6 +28,7 @@ export class HomeComponent implements OnInit {
     customerDetail: {},
     customerPaymentMethod: {},
   };
+  customerId: string = 'cus_Jq7hwNmp0s0yaP';
 
   constructor(
     private quoteService: QuoteService,
@@ -55,7 +62,7 @@ export class HomeComponent implements OnInit {
   getCustomer_Subscription() {
     this.isLoading = true;
     // Replace customerID with your internal customerId //lee cus_JtoExnGNvNWBvG
-    this.dataService.getCustomer_Subscription('cus_Jq7hwNmp0s0yaP').subscribe(
+    this.dataService.getCustomer_Subscription(this.customerId).subscribe(
       (res: any) => {
         this.data.customerSubscriptionData = res[0];
         this.data.customerDetail = res[1];
@@ -75,10 +82,14 @@ export class HomeComponent implements OnInit {
       month_bill: this.data.customerSubscriptionData.data.length
         ? this.data.customerSubscriptionData.data[0].plan.amount / 100
         : '',
-      payment_info: this.data.customerPaymentMethod.data.length ? this.data.customerPaymentMethod.data[0].type : '',
+      payment_info: this.data.customerPaymentMethod.data.length
+        ? this.data.customerPaymentMethod.data[0].type
+        : '',
       license_utilisation: [''],
       next_payment_date: this.data.customerSubscriptionData.data.length
-        ? moment.unix(this.data.customerSubscriptionData.data[0].current_period_end).format('MM/DD/YYYY')
+        ? moment
+            .unix(this.data.customerSubscriptionData.data[0].current_period_end)
+            .format('MM/DD/YYYY')
         : '',
       card_number: this.data.customerPaymentMethod.data.length
         ? `********${this.data.customerPaymentMethod.data[0].card.last4}`
@@ -91,15 +102,34 @@ export class HomeComponent implements OnInit {
 
   routeToCancel() {
     this.router.navigate(['/cancel-account']);
-    sessionStorage.setItem('subscriptions', JSON.stringify(this.data.customerSubscriptionData.data));
+    sessionStorage.setItem(
+      'subscriptions',
+      JSON.stringify(this.data.customerSubscriptionData.data)
+    );
   }
   submit() {}
 
+  checkout() {
+    let body = {
+      customerId: this.customerId,
+      amount: this.Form.value ? this.Form.value.month_bill * 100 : '',
+    };
+    this.dataService.checkoutSession(body).subscribe((res: any) => {
+      window.open(res.url);
+    });
+  }
+
   licenceBilling() {
-    window.open('https://knowledge.performwithmvp.com/licenses-and-billing', '_blank');
+    window.open(
+      'https://knowledge.performwithmvp.com/licenses-and-billing',
+      '_blank'
+    );
   }
 
   support() {
-    window.open('https://knowledge.performwithmvp.com/kb-tickets/new', '_blank');
+    window.open(
+      'https://knowledge.performwithmvp.com/kb-tickets/new',
+      '_blank'
+    );
   }
 }

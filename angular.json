@@ -28,6 +28,7 @@
               "src/apple-touch-icon.png",
               "src/robots.txt",
               "src/manifest.webmanifest",
+              "src/.well-known",
               "src/assets"
             ],
             "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/main.scss"],
@@ -101,7 +102,8 @@
               "src/apple-touch-icon.png",
               "src/robots.txt",
               "src/manifest.webmanifest",
-              "src/assets"
+              "src/assets",
+              "src/.well-known"
             ]
           },
           "configurations": {

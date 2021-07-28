@@ -1,6 +1,6 @@
 <div class="modal-content">
   <div class="modal-header payment-header" align="space-between">
-    <h3 class="pl-3">Add Payment Method</h3>
+    <h3 class="pl-3">{{dataModel.type == 'edit-payment-method'?'Edit':'Add'}} Payment Method</h3>
     <button type="button" (click)="close()" class="close" aria-label="Close">
       <span aria-hidden="true">
         <img src="assets/cancel.png" width="20px" />
@@ -9,7 +9,8 @@
   </div>
   <div class="modal-body text-center pt-1">
     <div class="p-3 p-sm-0 mt-0">
-      <form (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+      <form (ngSubmit)="dataModel.type == 'edit-payment-method'? updatePaymentMethod(): addPaymentMethod()"
+        [formGroup]="Form" #f novalidate>
         <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="5%" class="mt-4">
           <div fxFlex.lg="50%" fxFlex.md="50%" fxFlex="100%" fxLayout="column" fxLayoutGap="10px">
             <h6 class="mr-auto">Card Details</h6>
@@ -40,12 +41,15 @@
                 <span>city is required</span>
               </mat-error>
             </mat-form-field>
+
+
             <mat-form-field fxFlex="40%" fxFlex.xs="100%" appearance="outline">
               <mat-label>Address country</mat-label>
-              <input matInput formControlName="address_country" />
-              <mat-error *ngIf="hasError('address_country', 'required')">
-                <span>country is required</span>
-              </mat-error>
+              <mat-select formControlName="address_country">
+                <mat-option *ngFor="let item of (CountryCodes$ |async)" [value]="item.code">
+                  {{item.code}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div fxLayout="column">

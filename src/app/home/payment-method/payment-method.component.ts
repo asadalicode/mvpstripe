@@ -3,8 +3,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddPaymentMethodComponent } from '@app/@shared/modals/components/add-payment-method/add-payment-method.component';
 import { DeleteComponent } from '@app/@shared/modals/components/delete/delete.component';
 import { PopupModal } from '@app/@shared/Models/popup-modal';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { StripeCardComponent, StripeCardNumberComponent, StripeService } from 'ngx-stripe';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import {
+  StripeCardComponent,
+  StripeCardNumberComponent,
+  StripeService,
+} from 'ngx-stripe';
 import { StripeCardElementOptions } from '@stripe/stripe-js';
 import { DataService } from '@app/@shared/services/data.service';
 import { NotifierService } from 'angular-notifier';
@@ -18,7 +28,8 @@ export class PaymentMethodComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
   isLoading: boolean = false;
   customerId: string = '';
-  toolTip: string = 'Uh oh, you must add a new payment method before you re move this one.';
+  toolTip: string =
+    'Uh oh, you must add a new payment method before you re move this one.';
   DeleteComponent = DeleteComponent;
   AddPaymentMethodComponent = AddPaymentMethodComponent;
   popupRef = new PopupModal(this.matDialog);
@@ -104,7 +115,12 @@ export class PaymentMethodComponent implements OnInit {
 
   submit() {}
 
-  openItemModal(type: string, component: any, data?: {}, fromComponent?: string) {
+  openItemModal(
+    type: string,
+    component: any,
+    data?: {},
+    fromComponent?: string
+  ) {
     this.matDialog.closeAll();
     const dialogRef = this.popupRef.openModal(
       type,
@@ -114,9 +130,9 @@ export class PaymentMethodComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(result);
-      if (result && result.event == 'updated') {
+      if (result && result.event == 'paymentUpdated') {
         console.log(result.event);
-        this.updatePaymentMethod();
+        this.deletePaymentMethod();
       }
       if (result && result.event == 'deleted') {
         this.deletePaymentMethod(true);
@@ -128,54 +144,6 @@ export class PaymentMethodComponent implements OnInit {
     });
   }
 
-  updatePaymentMethod() {
-    this.isLoading = true;
-    this.stripeService
-      .createPaymentMethod({
-        type: 'card',
-        card: this.card.element,
-        billing_details: {
-          address: {
-            line1: this.Form.value.address_line1,
-            line2: this.Form.value.address_line2,
-            city: this.Form.value.address_city,
-            country: this.Form.value.address_country,
-          },
-        },
-      })
-      .subscribe(
-        (res: any) => {
-          if (res.error) {
-            this.isLoading = false;
-            this.notifierService.notify('error', `${res.error.message}`);
-          } else {
-            this.paymentMethodData = res.paymentMethod;
-            this.attachPaymentMethod();
-            this.notifierService.notify('success', 'Payment method updated successfully');
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
-
-  attachPaymentMethod() {
-    let body = {
-      customerId: this.customerId,
-      paymentId: this.paymentMethodData.id,
-    };
-
-    this.dataService.attachPaymentMethod(body).subscribe(
-      (res: any) => {
-        this.deletePaymentMethod();
-      },
-      (error) => {
-        this.isLoading = false;
-      }
-    );
-  }
-
   deletePaymentMethod(showAlert?: boolean) {
     this.isLoading = true;
     let body = {
@@ -185,7 +153,10 @@ export class PaymentMethodComponent implements OnInit {
       (res: any) => {
         this.getPaymentMethods();
         if (showAlert) {
-          this.notifierService.notify('success', 'Payment method deleted successfully');
+          this.notifierService.notify(
+            'success',
+            'Payment method deleted successfully'
+          );
         }
       },
       (error) => {

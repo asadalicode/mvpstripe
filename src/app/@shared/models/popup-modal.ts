@@ -4,7 +4,12 @@ export class PopupModal {
 
   constructor(public matDialog: MatDialog) {}
 
-  openModal(type: string, componentRef: any, modalData?: object, fromComponent?: string) {
+  openModal(
+    type: string,
+    componentRef: any,
+    modalData?: object,
+    fromComponent?: string
+  ) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
@@ -25,7 +30,7 @@ export class PopupModal {
         this.modalDialog = this.matDialog.open(componentRef, dialogConfig);
         break;
       }
-
+      case 'edit-payment-method':
       case 'add-payment-method': {
         dialogConfig.width = '1000px';
         dialogConfig.id = `modal-${type}`;

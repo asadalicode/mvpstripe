@@ -35,7 +35,11 @@ export class RequestPaymentComponent implements OnInit {
     requestPayerEmail: true,
   };
 
-  constructor(private http: HttpClient, private dataService: DataService, private stripeService: StripeService) {}
+  constructor(
+    private http: HttpClient,
+    private dataService: DataService,
+    private stripeService: StripeService
+  ) {}
 
   onPaymentMethod(ev: PaymentRequestPaymentMethodEvent) {
     this.createPaymentIntent()
@@ -45,7 +49,7 @@ export class RequestPaymentComponent implements OnInit {
           return this.stripeService
             .confirmCardPayment(
               pi.client_secret,
-              { payment_method: ev.paymentMethod.id, receipt_email: 'asadali.code123@gmail.com' },
+              { payment_method: ev.paymentMethod.id },
               { handleActions: false }
             )
             .pipe(
@@ -64,7 +68,9 @@ export class RequestPaymentComponent implements OnInit {
                   // payment method collection interface.
                   ev.complete('success');
                   // Let Stripe.js handle the rest of the payment flow.
-                  return this.stripeService.confirmCardPayment(pi.client_secret);
+                  return this.stripeService.confirmCardPayment(
+                    pi.client_secret
+                  );
                 }
               })
             );

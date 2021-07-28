@@ -12,16 +12,11 @@
       <p class="text-center p-3 border">HOW DOES 50% OFF YOUR NEXT 2 MONTHS SOUND? WILL THAT HELP?</p>
       <form>
         <div fxLayout="row" fxLayoutAlign="end end" class="pt-5">
-          <button
-            mat-raised-button
-            color="warn"
-            class="mr-3"
-            type="button"
-            (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')"
-          >
+          <button mat-raised-button color="warn" class="mr-3" type="button"
+            (click)="openItemModal('delete', DeleteComponent, {}, 'TooExpensive')">
             PLEASE CANCEL
           </button>
-          <button mat-raised-button color="primary">SAVE 50%</button>
+          <button type="button" mat-raised-button color="primary">SAVE 50%</button>
         </div>
       </form>
     </div>

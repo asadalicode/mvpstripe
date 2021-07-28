@@ -13,7 +13,7 @@ import { env } from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
-  serverUrl: 'https://stripe-backend-mvp.herokuapp.com',
+  serverUrl: 'http://localhost:4000',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
   stripeKey:
