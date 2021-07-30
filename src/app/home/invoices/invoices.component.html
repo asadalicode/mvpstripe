@@ -21,12 +21,8 @@
               </div>
             </div>
           </div>
-          <div
-            *ngFor="let data of invoiceData; let i = index"
-            fxLayout="row"
-            fxLayoutGap="10px"
-            fxLayoutAlign="start end"
-          >
+          <div *ngFor="let data of invoiceData; let i = index" fxLayout="row" fxLayoutGap="10px"
+            fxLayoutAlign="start end">
             <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
               <div *ngIf="i == 0" fxLayoutAlign="center center"></div>
               <div class="black-box w-sm-250" fxLayoutAlign="start center">
@@ -42,7 +38,7 @@
             <div fxFlex="25%" fxLayout="column" fxFlex.xs="100%">
               <div *ngIf="i == 0" fxLayoutAlign="center center"></div>
               <div class="black-box w-sm-250" fxLayoutAlign="start center">
-                <span class="pl-2">{{ data?.amount_paid / 100 }}</span>
+                <span class="pl-2">{{ data?.amount_due / 100 }}</span>
               </div>
             </div>
             <div fxLayoutAlign="end end">
@@ -50,6 +46,9 @@
                 <mat-icon svgIcon="pdf"></mat-icon>
               </button>
             </div>
+          </div>
+          <div *ngIf="!invoiceData?.length">
+            No invoices found for this customer
           </div>
         </div>
       </div>

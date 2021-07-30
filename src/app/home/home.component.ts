@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
     customerDetail: {},
     customerPaymentMethod: {},
   };
-  customerId: string = 'cus_Jq7hwNmp0s0yaP';
-
+  // customerId: string = 'cus_Jq7hwNmp0s0yaP';
+  customerId: string = 'cus_Jv37pa5aJCDaQ5';
   constructor(
     private quoteService: QuoteService,
     private dataService: DataService,
